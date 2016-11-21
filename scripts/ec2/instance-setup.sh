@@ -16,17 +16,18 @@ baseurl=https://repo.mongodb.org/yum/amazon/2013.03/mongodb-org/3.0/x86_64/
 gpgcheck=0
 enabled=1''' >> /etc/yum.repos.d/mongodb-org-3.0.repo
 
-yum install -y mongodb-org
-sudo service start mongod start
+yum install mongodb-org
+service mongod start
 
 curl -O https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh
 chmod +x ./Anaconda3-4.2.0-Linux-x86_64.sh
 ./Anaconda3-4.2.0-Linux-x86_64.sh -b
 rm ./Anaconda3-4.2.0-Linux-x86_64.sh
-echo 'PATH=/home/ec2-user/anaconda3/bin:$PATH' >> .bash_profile
-. ./bash_profile
+echo 'PATH=/anaconda3/bin:$PATH' >> .bash_profile
+PATH=/anaconda3/bin:$PATH
+echo "PATH is $PATH"
 
 pip install --upgrade pip
-pip install pomegrante
+pip install pomegranate
 pip install pymongo
 pip install gunicorn
